@@ -3,7 +3,7 @@ package com.example.backend.model;
 public enum ToDoStatus {
 
     OPEN("ToDo"),
-    DOING("in progress"),
+    DOING("doing"),
     DONE("done");
 
     private final String description;
