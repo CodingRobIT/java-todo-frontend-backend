@@ -19,6 +19,10 @@ public class ToDoService {
 
 
     public ToDo addTodo(ToDo toDoToAdd) {
-        return toDoRepo.addTodo(new ToDo(toDoToAdd.name()));
+        return toDoRepo.addTodo(new ToDo(
+                toDoToAdd.description(),
+                toDoToAdd.status()
+
+        ));
     }
 }
