@@ -3,12 +3,14 @@ package com.example.backend.service;
 import com.example.backend.Repo.ToDoRepo;
 import lombok.AllArgsConstructor;
 import com.example.backend.model.ToDo;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class ToDoService {
 
     private final ToDoRepo toDoRepo;
@@ -19,10 +21,24 @@ public class ToDoService {
 
 
     public ToDo addTodo(ToDo toDoToAdd) {
-        return toDoRepo.addTodo(new ToDo(
-                toDoToAdd.description(),
-                toDoToAdd.status()
-
-        ));
+        String id = UUID.randomUUID().toString();
+        ToDo newToDo = new ToDo(id, toDoToAdd.description(), toDoToAdd.status());
+        return toDoRepo.addTodo(newToDo);
+      //  return toDoRepo.addTodo(new ToDo(toDoToAdd.id(), toDoToAdd.description(), toDoToAdd.status()));
     }
+
+    public ToDo getToDoById(String id) {
+        return toDoRepo.getTodoById(id);
+    }
+
+    public ToDo changeToDoStatusById(ToDo todo, String id) {
+        return toDoRepo.changeToDoStatusById(todo, id);
+    }
+
+    //TEST
+//    public ToDo putToDoBy(String id, ToDo toDoToPut) {
+//        return ToDoRepo.changeToDoByIdNumber(id, toDoToPut);
+//    }
+
+
 }

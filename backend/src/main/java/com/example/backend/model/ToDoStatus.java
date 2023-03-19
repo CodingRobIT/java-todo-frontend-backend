@@ -2,20 +2,9 @@ package com.example.backend.model;
 
 public enum ToDoStatus {
 
-    OPEN("ToDo"),
-    DOING("doing"),
-    DONE("done");
+    OPEN,
+    IN_PROGRESS,
+    DONE
 
-    private final String description;
 
-    ToDoStatus(String description) {
-        this.description = description;
-    }
-
-    @Override
-    public String toString() {
-        return "ToDoStatus{" +
-                "description='" + description + '\'' +
-                '}';
-    }
 }
