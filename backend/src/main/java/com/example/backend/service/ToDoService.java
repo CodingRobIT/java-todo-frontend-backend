@@ -35,6 +35,10 @@ public class ToDoService {
         return toDoRepo.changeToDoStatusById(todo, id);
     }
 
+    public ToDo deletToDoById(String id) {
+        return toDoRepo.deletToDoById(id);
+    }
+
     //TEST
 //    public ToDo putToDoBy(String id, ToDo toDoToPut) {
 //        return ToDoRepo.changeToDoByIdNumber(id, toDoToPut);

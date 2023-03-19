@@ -42,6 +42,11 @@ public class ToDoRepo {
         return todoList.get(id);
     }
 
+    public ToDo deletToDoById(String id) {
+        todoList.remove(id);
+        return null;
+    }
+
 
 //    public ToDo changeToDoByIdNumber(String id, ToDo toDoToPutUpdate){
 //        ToDo toDoToDelete = getToDoById(id).orElseThrow(NoSuchElementException::new);

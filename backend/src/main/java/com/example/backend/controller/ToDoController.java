@@ -38,6 +38,11 @@ public class ToDoController {
         return  toDoService.changeToDoStatusById(todo, id);
     }
 
+    @DeleteMapping("/{id}")
+    public ToDo deletToDoById(@PathVariable String id) {
+        return toDoService.deletToDoById(id);
+    }
+
     //Test
 //    @PutMapping("/undefined")
 //        public ToDo changeToDoStatus(@PathVariable String id, @RequestBody ToDo toDoToUpdate) {
