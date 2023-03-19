@@ -37,9 +37,9 @@ public class ToDoRepo {
         return todoList.get(id);
     }
 
-    public ToDo changeToDoStatusById(ToDo todo, String id) {
-        todoList.put(id, todo); //Hier wird der alte Eintrag mit put überschreiben
-        return todoList.get(id);
+    public ToDo changeToDoStatusById(ToDo todo, String idRef2) {
+        todoList.put(idRef2, todo); //Hier wird der alte Eintrag mit put überschreiben
+        return todoList.get(idRef2);
     }
 
     public ToDo deletToDoById(String id) {

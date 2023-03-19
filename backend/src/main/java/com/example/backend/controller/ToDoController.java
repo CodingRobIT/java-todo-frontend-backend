@@ -38,9 +38,9 @@ public class ToDoController {
         return  toDoService.changeToDoStatusById(todo, id);
     }
 
-    @DeleteMapping("/{id}")
-    public ToDo deletToDoById(@PathVariable String id) {
-        return toDoService.deletToDoById(id);
+    @DeleteMapping("/{idRef3}")
+    public ToDo deletToDoById(@PathVariable String idRef3) {
+        return toDoService.deletToDoById(idRef3);
     }
 
     //Test

@@ -1,7 +1,6 @@
 package com.example.backend.service;
 
 import com.example.backend.Repo.ToDoRepo;
-import lombok.AllArgsConstructor;
 import com.example.backend.model.ToDo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -31,8 +30,8 @@ public class ToDoService {
         return toDoRepo.getTodoById(id);
     }
 
-    public ToDo changeToDoStatusById(ToDo todo, String id) {
-        return toDoRepo.changeToDoStatusById(todo, id);
+    public ToDo changeToDoStatusById(ToDo todo, String idRef) {
+        return toDoRepo.changeToDoStatusById(todo, idRef);
     }
 
     public ToDo deletToDoById(String id) {
