@@ -1,10 +1,15 @@
 package com.example.backend.controller;
 
+import com.example.backend.Repo.ToDoRepo;
+import com.example.backend.model.ToDo;
+import com.example.backend.status.ToDoStatus;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -20,6 +25,9 @@ class ToDoIntegrationTest {
     @Autowired
     MockMvc mockMvc;//MockMvc zum "vortäuschen" von diversen dingen wie DatenBank.
 
+    @Autowired
+    ToDoRepo toDoRepo; //Anlegen eines Fake Repos
+
     @Test
     void getToDos_shouldReturnEmptyToDoList_whenRepoIsEmpty() throws Exception {
         mockMvc.perform(get("/api/todo"))
@@ -28,31 +36,43 @@ class ToDoIntegrationTest {
                         """
                                 []
                                 """));
-
-        //GIVEN
-
-        //WHEN
-
-        //THEN
     }
+
+    @DirtiesContext
     @Test
-    void getToDos_shouldReturnToDoList_whenRepoIsNotEmpty() {
 
+    void getToDos_shouldReturnToDoList_whenRepoIsNotEmpty() throws Exception {
+        ToDo toDo = new ToDo("123", "TEST ToDo", ToDoStatus.OPEN); //adden einer ToDo_ ins Fake Repo
+        toDoRepo.addTodo(toDo); //und Hier wird die neue "toDo_" ins Fake Repo "toDoRepo" geaddet
+
+        mockMvc.perform(get("/api/todo"))
+                .andExpect(status().isOk())
+                .andExpect(content().json(
+                        """
+                                [                       /* Text hier muss natürlich wie oben sein */
+                                    {
+                                         "id": "123",
+                                         "description": "TEST ToDo",
+                                         "status": "OPEN"
+                                    }
+                                ]
+                                """));
     }
 
-    @Test
-    void addToDo() {
-    }
-
-    @Test
-    void getToDoById() {
-    }
-
-    @Test
-    void changeToDoStatusById() {
-    }
-
-    @Test
-    void deletToDoById() {
-    }
+    //Todo In Workprocess Integration Test
+//    @Test
+//    void addToDo() {
+//    }
+//
+//    @Test
+//    void getToDoById() {
+//    }
+//
+//    @Test
+//    void changeToDoStatusById() {
+//    }
+//
+//    @Test
+//    void deletToDoById() {
+//    }
 }
